@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
     const location = req.body.location ? req.body.location : "Kiev"
-    const appId = "a10811984d0dbb3a51627c10b0ed57f3"
+    const appId = " " //addTOKEN
     const url = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + appId + "&units=metric"
     https.get(url, (response) => {
       if (response.statusCode === 200) {
