@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>laba 7 | Weather app</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <% if (data === '') { %>
+    <div class="container mt-5 col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Погода по вашему городу</h5>
+          <form action="/" method="post">
+            <div class="form-group">
+              <input type="text" class="form-control" name="location" placeholder="Введите город">
+            </div>
+            <button type="submit" class="btn btn-primary">Поиск</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <% } else if (data === '0') { %>
+    <div class="container mt-5">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-title">Вы что-то неправильно ввели!</p>
+        </div>
+      </div>
+      <div class="text-center">
+        <a href="/" class="btn btn-primary mt-5 mx-auto">Другой город</a>
+      </div>
+    </div>
+    <% } else { %>
+    <div class="container mt-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Погода в <%= data.name %>, <%= data.sys.country %></h5>
+          <img class="float-right" src="http://openweathermap.org/img/wn/<%= data.weather[0].icon %>@2x.png" alt="icon">
+          <p class="display-1"><%= data.main.temp%><sup>o</sup>C</p>
+          <span class="text-muted">Чувствуется как <%= data.main.feels_like %><sup>o</sup>C</span>
+          
+          <div class="overflow-x mt-3">
+            <span class="pr-5 inf"> Ветер: <%= data.wind.speed %> м/сек</span>
+            <span class="pr-5 inf"> Давление: <%= data.main.pressure %> </span>
+            <span class="pr-5 inf"> Влажность: <%= data.main.humidity %>%</span>
+            <span class="pr-5 inf"> Видимость: <%= data.visibility/1000 %> км</span>
+            <span class="pr-5 inf"> Облачность: <%= data.clouds.all %>%</span>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <a href="/" class="btn btn-primary mt-5 mx-auto">Другой город</a>
+      </div>
+    </div>
+    <% } %>
+  </body>
+
+</html>
